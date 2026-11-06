@@ -18,6 +18,7 @@ Uno de sus principales diferenciadores será un sistema de **previsualización 3
 - **Previsualización 3D:** visualización interactiva de los objetos y sus personalizaciones antes de realizar un pedido.
 - **Gestión de usuarios:** administración de usuarios, roles y permisos.
 - **Auditoría:** registro de acciones para mantener la trazabilidad de las operaciones.
+- **Auditoría:** registro de acciones para mantener la trazabilidad de las operaciones.
 
 ## Objetivo
 
