@@ -5,26 +5,26 @@ on:
   push:
   pull_request:
 
-
 jobs:
   backend:
     name: Backend - Maven
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  services:
-    postgres:
-      image: postgres:17
-      env:
-        POSTGRES_DB: custom
-        POSTGRES_USER: admin
-        POSTGRES_PASSWORD: password123
-      ports:
-        - 5432:5432
-      options: >-
-        --health-cmd "pg_isready -U admin -d custom"
-        --health-interval 5s
-        --health-timeout 5s
-        --health-retries 5
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: custom
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: password123
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U admin -d custom"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Descargar código
         uses: actions/checkout@v4
