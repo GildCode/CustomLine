@@ -1,0 +1,59 @@
+
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  backend:
+    name: Backend - Maven
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Dar permisos al Maven Wrapper
+        run: chmod +x ./mvnw
+        working-directory: backend
+
+      - name: Verificar backend
+        run: ./mvnw -B verify
+        working-directory: backend
+
+  frontend:
+    name: Frontend - Vue
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+        working-directory: frontend
+
+      - name: Ejecutar lint
+        run: npm run lint
+        working-directory: frontend
+
+      - name: Construir frontend
+        run: npm run build
+        working-directory: frontend
